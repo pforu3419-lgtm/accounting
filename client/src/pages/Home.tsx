@@ -6,8 +6,20 @@
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChevronRight, Menu, BarChart2, Scale, Building2, Phone, Youtube } from "lucide-react";
 import { useState } from "react";
+
+/** ลิงก์เพิ่มเพื่อน LINE (ใช้ใน Dialog และปุ่มเปิดแอป) */
+const LINE_ADD_URL = "https://line.me/ti/p/0888137777";
+
+/** เบอร์โทรติดต่อที่โทรได้จริง (โทรด่วน) */
+const CONTACT_PHONES = [
+  { label: "โทรด่วน", number: "0816116174", display: "081 611 6174" },
+  { label: "โทรด่วน", number: "027540992", display: "02 754 0992" },
+  { label: "โทรด่วน", number: "027540993", display: "02 754 0993" },
+  { label: "โทรด่วน", number: "027540325", display: "02 754 0325" },
+] as const;
 
 /** ไอคอน LINE (โลโก้แชทบับเบิล) ใช้กับปุ่มสีเขียว */
 function LineIcon({ className }: { className?: string }) {
@@ -33,9 +45,27 @@ const YOUTUBE_MAIN_VIDEO_ID = "Y8mdG1Lxm_c"; // คลิปที่โชว�
 
 export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [lineQrOpen, setLineQrOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
+      {/* Dialog แสดง QR Code เมื่อกดแชท/เพิ่มเพื่อน LINE */}
+      <Dialog open={lineQrOpen} onOpenChange={setLineQrOpen}>
+        <DialogContent className="sm:max-w-sm text-center">
+          <DialogHeader>
+            <DialogTitle>เพิ่มเพื่อน LINE</DialogTitle>
+          </DialogHeader>
+          <p className="text-muted-foreground text-sm">สแกน QR Code ด้านล่างเพื่อเพิ่มเพื่อนและแชทกับเรา</p>
+          <div className="flex justify-center p-4 bg-white rounded-xl border">
+            <img src="/line-qr.png" alt="LINE QR Code" className="w-48 h-48" />
+          </div>
+          <Button asChild className="w-full bg-[#06C755] hover:bg-[#05b04c] text-white rounded-lg">
+            <a href={LINE_ADD_URL} target="_blank" rel="noopener noreferrer" onClick={() => setLineQrOpen(false)}>
+              <LineIcon className="w-5 h-5 mr-2 inline" /> เปิดในแอป LINE
+            </a>
+          </Button>
+        </DialogContent>
+      </Dialog>
       {/* ========== 1. NAVIGATION (โทนเดียวกับทั้งเว็บ) ========== */}
       <nav className="sticky top-0 z-50 bg-primary shadow-md">
         <div className="container flex items-center justify-between h-16 md:h-[4.25rem]">
@@ -69,10 +99,10 @@ export default function Home() {
           {/* CTA ปุ่มสีฟ้าอ่อน + Mobile trigger */}
           <div className="flex items-center gap-2">
             <Button
-              asChild
               className="hidden sm:inline-flex bg-accent hover:bg-accent/90 text-white rounded-lg px-5 md:px-6 h-10 text-sm font-semibold shadow-sm"
+              onClick={() => setLineQrOpen(true)}
             >
-              <a href="https://line.me/ti/p/0888137777" target="_blank" rel="noopener noreferrer">ปรึกษาเบื้องต้น</a>
+              ปรึกษาเบื้องต้น
             </Button>
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
@@ -97,15 +127,12 @@ export default function Home() {
                       {link.label}
                     </a>
                   ))}
-                  <a
-                    href="#contact"
-                    onClick={() => setMobileOpen(false)}
-                    className="mt-4 mx-4"
+                  <Button
+                    className="mt-4 mx-4 w-[calc(100%-2rem)] bg-accent hover:bg-accent/90 text-white rounded-lg h-11 font-semibold"
+                    onClick={() => { setMobileOpen(false); setLineQrOpen(true); }}
                   >
-                    <Button className="w-full bg-accent hover:bg-accent/90 text-white rounded-lg h-11 font-semibold">
-                      ปรึกษาเบื้องต้น
-                    </Button>
-                  </a>
+                    ปรึกษาเบื้องต้น
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>
@@ -138,10 +165,8 @@ export default function Home() {
                 <Phone className="w-5 h-5" /> ติดต่อเรา
               </a>
             </Button>
-            <Button asChild size="lg" className="bg-[#06C755] hover:bg-[#05b04c] text-white rounded-lg px-6 md:px-8 h-12 text-base font-semibold shadow-lg border border-white/20 inline-flex items-center justify-center gap-2">
-              <a href="https://line.me/ti/p/0888137777" target="_blank" rel="noopener noreferrer">
-                <LineIcon className="w-5 h-5" /> แชทผ่าน LINE
-              </a>
+            <Button size="lg" className="bg-[#06C755] hover:bg-[#05b04c] text-white rounded-lg px-6 md:px-8 h-12 text-base font-semibold shadow-lg border border-white/20 inline-flex items-center justify-center gap-2" onClick={() => setLineQrOpen(true)}>
+              <LineIcon className="w-5 h-5" /> แชทผ่าน LINE
             </Button>
           </div>
         </div>
@@ -189,8 +214,8 @@ export default function Home() {
               <h3 className="text-xl md:text-2xl font-bold text-primary leading-snug mb-2">พร้อมยกระดับธุรกิจของคุณ? เริ่มต้นปรึกษาเราวันนี้</h3>
               <p className="text-sm text-neutral-600">ผู้เชี่ยวชาญด้านบัญชีและกฎหมาย พร้อมดูแลคุณทุกขั้นตอน</p>
             </div>
-            <Button asChild className="rounded-xl bg-primary hover:bg-primary/90 text-white px-8 h-12 text-base font-semibold shrink-0">
-              <a href="https://line.me/ti/p/0888137777" target="_blank" rel="noopener noreferrer">ปรึกษาฟรี</a>
+            <Button className="rounded-xl bg-primary hover:bg-primary/90 text-white px-8 h-12 text-base font-semibold shrink-0" onClick={() => setLineQrOpen(true)}>
+              ปรึกษาฟรี
             </Button>
           </div>
 
@@ -309,8 +334,8 @@ export default function Home() {
                 </Accordion>
                 <p className="text-center lg:text-left text-neutral-800 mt-6 mb-4">ยังมีคำถามเพิ่มเติม?</p>
                 <div className="text-center lg:text-left">
-                  <Button asChild className="rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold">
-                    <a href="https://line.me/ti/p/0888137777" target="_blank" rel="noopener noreferrer">ปรึกษาเบื้องต้นฟรี</a>
+                  <Button className="rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold" onClick={() => setLineQrOpen(true)}>
+                    ปรึกษาเบื้องต้นฟรี
                   </Button>
                 </div>
               </div>
@@ -324,6 +349,25 @@ export default function Home() {
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">ติดต่อเรา</h2>
           <p className="text-muted-foreground mb-8 max-w-xl">บริษัท ดร.เกรียงศักดิ์และเพื่อนทนายความการบัญชี จำกัด — ให้บริการในวันและเวลาทำการ (กรณีเร่งด่วนติดต่อโทรศัพท์มือถือได้โดยตรง)</p>
+
+          {/* การ์ดโทรด่วน 4 เบอร์ (โทรได้จริง) — โทนสีเดียวกับเว็บ (primary/accent) */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            {CONTACT_PHONES.map((item) => (
+              <div key={item.number} className="bg-white rounded-2xl border border-primary/20 shadow-sm p-5 flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-3">
+                  <Phone className="w-6 h-6 text-white" />
+                </div>
+                <p className="text-sm font-medium text-foreground mb-1">{item.label}</p>
+                <p className="text-lg font-bold text-primary mb-3">{item.display}</p>
+                <Button asChild size="sm" variant="outline" className="w-full rounded-full border-primary text-primary hover:bg-primary/10 hover:text-primary">
+                  <a href={`tel:${item.number}`}>
+                    <Phone className="w-4 h-4 mr-1.5 inline" /> โทรด่วนคลิก
+                  </a>
+                </Button>
+              </div>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-6">
               <div className="flex gap-3">
@@ -343,25 +387,31 @@ export default function Home() {
                   <p className="text-sm font-semibold text-foreground mb-1">โทรศัพท์</p>
                   <p className="text-foreground text-sm">มือถือ : <a href="tel:0816116174" className="text-primary hover:underline">081-611-6174</a></p>
                   <p className="text-foreground text-sm">สำนักงาน : <a href="tel:027540992" className="text-primary hover:underline">02-754-0992</a>, <a href="tel:027540993" className="text-primary hover:underline">02-754-0993</a></p>
-                  <p className="text-foreground text-sm">โทรสาร : 02-754-0323</p>
+                  <p className="text-foreground text-sm">โทรสาร : <a href="tel:027540325" className="text-primary hover:underline">02-754-0325</a></p>
                 </div>
               </div>
               <div className="flex gap-3">
                 <div className="w-10 h-10 rounded-lg bg-[#06C755]/15 flex items-center justify-center shrink-0">
                   <LineIcon className="w-5 h-5 text-[#06C755]" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <p className="text-sm font-semibold text-foreground mb-1">LINE Official</p>
-                  <p className="text-foreground text-sm">Line ID : <a href="https://line.me/ti/p/0888137777" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">0888137777</a></p>
+                  <p className="text-foreground text-sm">Line ID : <button type="button" onClick={() => setLineQrOpen(true)} className="text-primary hover:underline font-medium">0888137777</button></p>
                   <p className="text-muted-foreground text-xs mt-1">ปรึกษากฎหมายเบื้องต้น • นัดหมายเข้าพบ • ส่งเอกสารประกอบการพิจารณาคดี</p>
                 </div>
+              </div>
+              <div className="flex items-start gap-4 pt-1">
+                <button type="button" onClick={() => setLineQrOpen(true)} className="shrink-0 p-2 bg-white rounded-xl border border-neutral-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer" title="สแกนเพิ่มเพื่อน LINE">
+                  <img src="/line-qr.png" alt="LINE QR Code" className="w-24 h-24" />
+                </button>
+                <p className="text-muted-foreground text-xs pt-2">สแกน QR Code เพื่อเพิ่มเพื่อนและแชทกับเรา</p>
               </div>
               <div className="flex flex-wrap gap-3 pt-2">
                 <Button asChild size="default" className="rounded-full bg-primary hover:bg-primary/90 text-white h-11 px-6">
                   <a href="tel:0816116174"><Phone className="w-4 h-4 mr-2 inline" /> โทร</a>
                 </Button>
-                <Button asChild size="default" className="rounded-full bg-[#06C755] hover:bg-[#05b04c] text-white h-11 px-6">
-                  <a href="https://line.me/ti/p/0888137777" target="_blank" rel="noopener noreferrer"><LineIcon className="w-4 h-4 mr-2 inline" /> Line</a>
+                <Button size="default" className="rounded-full bg-[#06C755] hover:bg-[#05b04c] text-white h-11 px-6" onClick={() => setLineQrOpen(true)}>
+                  <LineIcon className="w-4 h-4 mr-2 inline" /> Line
                 </Button>
               </div>
             </div>
@@ -409,13 +459,16 @@ export default function Home() {
             </div>
             <div>
               <p className="text-white/90 font-medium mb-2">ติดต่อ</p>
-              <p className="text-sm text-white/80"><a href="tel:0816116174" className="hover:text-white">โทร 081-611-6174</a></p>
-              <p className="text-sm text-white/80"><a href="tel:027540992" className="hover:text-white">02-754-0992, 02-754-0993</a></p>
-              <p className="text-sm text-white/80"><a href="https://line.me/ti/p/0888137777" target="_blank" rel="noopener noreferrer" className="hover:text-white">Line 0888137777</a></p>
+              <p className="text-sm text-white/80"><a href="tel:0816116174" className="hover:text-white">081-611-6174</a></p>
+              <p className="text-sm text-white/80"><a href="tel:027540992" className="hover:text-white">02-754-0992</a>, <a href="tel:027540993" className="hover:text-white">02-754-0993</a>, <a href="tel:027540325" className="hover:text-white">02-754-0325</a></p>
+              <p className="text-sm text-white/80"><button type="button" onClick={() => setLineQrOpen(true)} className="hover:text-white cursor-pointer">Line 0888137777</button></p>
+              <button type="button" onClick={() => setLineQrOpen(true)} className="inline-block mt-2 p-1.5 bg-white rounded-lg cursor-pointer" title="สแกนเพิ่มเพื่อน LINE">
+                <img src="/line-qr.png" alt="LINE QR Code" className="w-16 h-16" />
+              </button>
             </div>
             <div>
-              <Button asChild size="lg" className="w-full rounded-full bg-white text-primary hover:bg-white/90 font-semibold">
-                <a href="https://line.me/ti/p/0888137777" target="_blank" rel="noopener noreferrer">ปรึกษาฟรี</a>
+              <Button size="lg" className="w-full rounded-full bg-white text-primary hover:bg-white/90 font-semibold" onClick={() => setLineQrOpen(true)}>
+                ปรึกษาฟรี
               </Button>
             </div>
           </div>
