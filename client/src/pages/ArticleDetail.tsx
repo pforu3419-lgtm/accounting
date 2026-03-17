@@ -528,10 +528,10 @@ export default function ArticleDetail() {
               ติดต่อเรา เพื่อขอคำปรึกษาเบื้องต้นฟรี
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
+              <Button asChild
                 className="bg-white text-primary hover:bg-white/90 rounded-full px-8 py-3 font-semibold"
               >
-                📞 081-611-6174
+                <a href="tel:0816116174">📞 081-611-6174</a>
               </Button>
               <Button 
                 className="bg-[#06C755] hover:bg-[#05b04c] text-white rounded-full px-8 py-3 font-semibold"
@@ -577,9 +577,11 @@ export default function ArticleDetail() {
             <div>
               <h4 className="font-semibold mb-4">ติดต่อ</h4>
               <ul className="space-y-2 text-sm text-white/80">
-                <li>📞 081-611-6174</li>
+                <li><a href="tel:0816116174" className="hover:text-white">📞 มือถือ 081-611-6174</a></li>
+                <li><a href="tel:027540992" className="hover:text-white">โทร 02-754-0992-3</a></li>
+                <li><a href="tel:027540325" className="hover:text-white">โทร 02-754-0325</a></li>
                 <li>💬 Line: 0888137777</li>
-                <li>📍 ประเทศไทย</li>
+                <li>📍 199 หมู่ 9 ถนนแบริ่ง 107 [35-37] ต.สำโรงเหนือ อ.เมืองสมุทรปราการ จ.สมุทรปราการ 10270</li>
               </ul>
             </div>
           </div>

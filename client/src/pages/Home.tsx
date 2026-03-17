@@ -127,12 +127,12 @@ export default function Home() {
                       {link.label}
                     </a>
                   ))}
-                  <Button
+          <Button 
                     className="mt-4 mx-4 w-[calc(100%-2rem)] bg-accent hover:bg-accent/90 text-white rounded-lg h-11 font-semibold"
                     onClick={() => { setMobileOpen(false); setLineQrOpen(true); }}
-                  >
-                    ปรึกษาเบื้องต้น
-                  </Button>
+          >
+            ปรึกษาเบื้องต้น
+          </Button>
                 </div>
               </SheetContent>
             </Sheet>
@@ -153,9 +153,9 @@ export default function Home() {
         <div className="container relative z-10 text-center max-w-4xl mx-auto px-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-white leading-[1.25] mb-3 tracking-tight">
             รับทำบัญชี ภาษี จดทะเบียนธุรกิจ
-            <br />
+                <br />
             และงานกฎหมาย
-          </h1>
+              </h1>
           <p className="text-base md:text-lg text-white/90 mb-8 md:mb-10">
             บริษัท ดร.เกรียงศักดิ์และเพื่อนทนายความการบัญชี จำกัด
           </p>
@@ -164,10 +164,10 @@ export default function Home() {
               <a href="tel:0816116174">
                 <Phone className="w-5 h-5" /> ติดต่อเรา
               </a>
-            </Button>
+                </Button>
             <Button size="lg" className="bg-[#06C755] hover:bg-[#05b04c] text-white rounded-lg px-6 md:px-8 h-12 text-base font-semibold shadow-lg border border-white/20 inline-flex items-center justify-center gap-2" onClick={() => setLineQrOpen(true)}>
               <LineIcon className="w-5 h-5" /> แชทผ่าน LINE
-            </Button>
+                </Button>
           </div>
         </div>
       </section>
@@ -189,7 +189,7 @@ export default function Home() {
             <a href="/services-guide" className="block p-6 rounded-2xl border-2 border-primary/30 bg-slate-100/90 hover:border-primary/50 hover:bg-slate-100 transition-all text-left">
               <div className="w-12 h-12 rounded-full border-2 border-primary flex items-center justify-center mb-4 text-neutral-500">
                 <Scale className="w-6 h-6" strokeWidth={2} />
-              </div>
+            </div>
               <h3 className="font-bold text-primary text-lg mb-2 text-center">ที่ปรึกษากฎหมาย</h3>
               <p className="text-sm text-neutral-600 text-center leading-relaxed mb-3">ธุรกิจ สัญญา แรงงาน ครบวงจร</p>
               <span className="text-primary font-medium text-sm inline-flex items-center gap-0.5">ดูรายละเอียด <ChevronRight className="w-4 h-4" /></span>
@@ -217,7 +217,7 @@ export default function Home() {
             <Button className="rounded-xl bg-primary hover:bg-primary/90 text-white px-8 h-12 text-base font-semibold shrink-0" onClick={() => setLineQrOpen(true)}>
               ปรึกษาฟรี
             </Button>
-          </div>
+              </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 md:gap-16 text-center mt-14 md:mt-16 max-w-3xl mx-auto">
             <div>
@@ -227,7 +227,7 @@ export default function Home() {
             <div>
               <p className="text-3xl md:text-4xl font-bold text-primary">10+</p>
               <p className="text-sm text-neutral-600 mt-1">ปีประสบการณ์</p>
-            </div>
+              </div>
             <div>
               <p className="text-3xl md:text-4xl font-bold text-primary">99%</p>
               <p className="text-sm text-neutral-600 mt-1">ลูกค้ากลับมาใช้ซ้ำ</p>
@@ -263,7 +263,7 @@ export default function Home() {
                   <svg className="w-10 h-10 text-white ml-1" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M8 5v14l11-7z" /></svg>
                 </div>
               </div>
-            </div>
+                </div>
           </a>
           <div className="mt-6 text-center">
             <Button asChild size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white rounded-full px-8 h-12 font-semibold">
@@ -281,7 +281,7 @@ export default function Home() {
           <p className="text-muted-foreground mb-4">บริการครบวงจร ถูกต้องตามกฎหมาย</p>
           <Button asChild size="lg" className="rounded-full h-14 px-10 text-base font-semibold">
             <a href="/services-guide" className="inline-flex items-center gap-2">อ่านคู่มือบริการฉบับละเอียด <ChevronRight className="w-5 h-5" /></a>
-          </Button>
+              </Button>
         </div>
       </section>
 
@@ -307,12 +307,12 @@ export default function Home() {
                       <span className="text-accent text-sm font-medium">อ่านต่อ →</span>
                     </a>
                   ))}
-                </div>
+          </div>
                 <div className="text-center lg:text-left">
                   <Button asChild variant="outline" className="rounded-lg border-neutral-300 text-neutral-800 hover:bg-neutral-50">
                     <a href="/blog">อ่านบทความทั้งหมด</a>
                   </Button>
-                </div>
+              </div>
               </div>
 
               {/* ขวา: คำถามที่พบบ่อย (FAQ) */}
@@ -337,9 +337,9 @@ export default function Home() {
                   <Button className="rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold" onClick={() => setLineQrOpen(true)}>
                     ปรึกษาเบื้องต้นฟรี
                   </Button>
-                </div>
               </div>
-            </div>
+              </div>
+              </div>
           </div>
         </div>
       </section>
@@ -366,7 +366,7 @@ export default function Home() {
                 </Button>
               </div>
             ))}
-          </div>
+            </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-6">
@@ -376,7 +376,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground mb-1">ที่อยู่สำนักงาน</p>
-                  <p className="text-foreground leading-relaxed text-sm">199 หมู่ 9 ถนนแบริ่ง 107 ตำบลสำโรงเหนือ อำเภอเมืองสมุทรปราการ จังหวัดสมุทรปราการ 10270</p>
+                  <p className="text-foreground leading-relaxed text-sm">199 หมู่ 9 ถนนแบริ่ง 107 [35-37] ตำบลสำโรงเหนือ อำเภอเมืองสมุทรปราการ จังหวัดสมุทรปราการ 10270</p>
                 </div>
               </div>
               <div className="flex gap-3">
@@ -386,8 +386,8 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-semibold text-foreground mb-1">โทรศัพท์</p>
                   <p className="text-foreground text-sm">มือถือ : <a href="tel:0816116174" className="text-primary hover:underline">081-611-6174</a></p>
-                  <p className="text-foreground text-sm">สำนักงาน : <a href="tel:027540992" className="text-primary hover:underline">02-754-0992</a>, <a href="tel:027540993" className="text-primary hover:underline">02-754-0993</a></p>
-                  <p className="text-foreground text-sm">โทรสาร : <a href="tel:027540325" className="text-primary hover:underline">02-754-0325</a></p>
+                  <p className="text-foreground text-sm">โทร : <a href="tel:027540992" className="text-primary hover:underline">02-754-0992-3</a></p>
+                  <p className="text-foreground text-sm">โทร : <a href="tel:027540325" className="text-primary hover:underline">02-754-0325</a></p>
                 </div>
               </div>
               <div className="flex gap-3">
@@ -455,12 +455,12 @@ export default function Home() {
             </div>
             <div>
               <p className="text-white/90 font-medium mb-2">ที่อยู่</p>
-              <p className="text-sm text-white/80">199 หมู่ 9 ถนนแบริ่ง 107 ต.สำโรงเหนือ อ.เมืองสมุทรปราการ จ.สมุทรปราการ 10270</p>
+              <p className="text-sm text-white/80">199 หมู่ 9 ถนนแบริ่ง 107 [35-37] ต.สำโรงเหนือ อ.เมืองสมุทรปราการ จ.สมุทรปราการ 10270</p>
             </div>
             <div>
               <p className="text-white/90 font-medium mb-2">ติดต่อ</p>
-              <p className="text-sm text-white/80"><a href="tel:0816116174" className="hover:text-white">081-611-6174</a></p>
-              <p className="text-sm text-white/80"><a href="tel:027540992" className="hover:text-white">02-754-0992</a>, <a href="tel:027540993" className="hover:text-white">02-754-0993</a>, <a href="tel:027540325" className="hover:text-white">02-754-0325</a></p>
+              <p className="text-sm text-white/80"><a href="tel:0816116174" className="hover:text-white">มือถือ 081-611-6174</a></p>
+              <p className="text-sm text-white/80"><a href="tel:027540992" className="hover:text-white">โทร 02-754-0992-3</a>, <a href="tel:027540325" className="hover:text-white">02-754-0325</a></p>
               <p className="text-sm text-white/80"><button type="button" onClick={() => setLineQrOpen(true)} className="hover:text-white cursor-pointer">Line 0888137777</button></p>
               <button type="button" onClick={() => setLineQrOpen(true)} className="inline-block mt-2 p-1.5 bg-white rounded-lg cursor-pointer" title="สแกนเพิ่มเพื่อน LINE">
                 <img src="/line-qr.png" alt="LINE QR Code" className="w-16 h-16" />
